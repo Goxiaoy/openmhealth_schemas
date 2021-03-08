@@ -10,6 +10,7 @@ abstract class SchemaSupport {
   static const String ACCELERATION = 'acceleration';
   static const String ACTIVITY = 'physical-activity';
   static const String BLOOD_PRESSURE = 'blood-pressure';
+  static const String BLOOD_GLUCOSE = 'blood-glucose';
   static const String SYSTOLIC_BLOOD_PRESSURE = 'systolic-blood-pressure';
   static const String DIASTOLIC_BLOOD_PRESSURE = 'diastolic-blood-pressure';
   static const String HEART_RATE = 'heart-rate';

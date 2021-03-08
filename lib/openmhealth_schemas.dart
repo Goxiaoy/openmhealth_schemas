@@ -12,6 +12,7 @@ export 'package:openmhealth_schemas/domain/omh/statistics.dart';
 export 'package:openmhealth_schemas/domain/omh/geoposition.dart';
 export 'package:openmhealth_schemas/domain/omh/activity.dart';
 export 'package:openmhealth_schemas/domain/omh/bloodpressure.dart';
+export 'package:openmhealth_schemas/domain/omh/blood_glucose.dart';
 export 'package:openmhealth_schemas/domain/omh/datapoint.dart';
 export 'package:openmhealth_schemas/domain/omh/acceleration.dart';
 export 'package:openmhealth_schemas/domain/omh/cardio.dart';
