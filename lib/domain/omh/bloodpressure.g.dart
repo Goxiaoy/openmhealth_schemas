@@ -49,7 +49,7 @@ SystolicBloodPressure _$SystolicBloodPressureFromJson(
     Map<String, dynamic> json) {
   return SystolicBloodPressure(
     json['unit'] as String,
-    json['value'],
+    (json['value'] as num)?.toDouble(),
   );
 }
 
@@ -72,7 +72,7 @@ DiastolicBloodPressure _$DiastolicBloodPressureFromJson(
     Map<String, dynamic> json) {
   return DiastolicBloodPressure(
     json['unit'] as String,
-    json['value'],
+    (json['value'] as num)?.toDouble(),
   );
 }
 

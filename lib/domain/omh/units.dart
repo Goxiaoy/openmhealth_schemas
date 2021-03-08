@@ -1,5 +1,5 @@
-import 'package:openmhealth_schemas/openmhealth_schemas.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:openmhealth_schemas/openmhealth_schemas.dart';
 
 part 'units.g.dart';
 
@@ -14,16 +14,19 @@ abstract class Unit extends SchemaEnumValue {
 /// OMH version 1.0
 /// See <a href="http://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_unit-value">unit-value</a>
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
-class UnitValue extends Object with AdditionalPropertySupport implements SchemaSupport {
-  static SchemaId SCHEMA_ID =
-      new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, "unit-value", new SchemaVersion(1, 0));
+class UnitValue extends Object
+    with AdditionalPropertySupport
+    implements SchemaSupport {
+  static SchemaId SCHEMA_ID = new SchemaId.withVersion(
+      SchemaSupport.OMH_NAMESPACE, "unit-value", new SchemaVersion(1, 0));
 
   double value;
   String unit;
 
   UnitValue(this.unit, this.value);
 
-  factory UnitValue.fromJson(Map<String, dynamic> json) => _$UnitValueFromJson(json);
+  factory UnitValue.fromJson(Map<String, dynamic> json) =>
+      _$UnitValueFromJson(json);
 
   Map<String, dynamic> toJson() => _$UnitValueToJson(this);
 
@@ -42,13 +45,16 @@ class UnitValue extends Object with AdditionalPropertySupport implements SchemaS
 /// See <a href="http://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_length-unit-value">length-unit-value</a>
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class LengthUnitValue extends UnitValue {
-  static SchemaId SCHEMA_ID =
-      new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, "length-unit-value", new SchemaVersion(1, 0));
+  static SchemaId SCHEMA_ID = new SchemaId.withVersion(
+      SchemaSupport.OMH_NAMESPACE,
+      "length-unit-value",
+      new SchemaVersion(1, 0));
 
 //  LengthUnitValue(LengthUnit unit, value) : super(unit.schemaValue, value);
-  LengthUnitValue(String unit, value) : super(unit, value);
+  LengthUnitValue(String unit, double value) : super(unit, value);
 
-  factory LengthUnitValue.fromJson(Map<String, dynamic> json) => _$LengthUnitValueFromJson(json);
+  factory LengthUnitValue.fromJson(Map<String, dynamic> json) =>
+      _$LengthUnitValueFromJson(json);
   Map<String, dynamic> toJson() => _$LengthUnitValueToJson(this);
 
   @override

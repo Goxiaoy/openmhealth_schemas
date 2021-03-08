@@ -30,7 +30,7 @@ Map<String, dynamic> _$UnitValueToJson(UnitValue instance) {
 LengthUnitValue _$LengthUnitValueFromJson(Map<String, dynamic> json) {
   return LengthUnitValue(
     json['unit'] as String,
-    json['value'],
+    (json['value'] as num)?.toDouble(),
   );
 }
 

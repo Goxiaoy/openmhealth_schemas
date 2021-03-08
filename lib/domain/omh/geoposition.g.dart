@@ -56,7 +56,7 @@ Map<String, dynamic> _$GeopositionToJson(Geoposition instance) {
 PlaneAngleUnitValue _$PlaneAngleUnitValueFromJson(Map<String, dynamic> json) {
   return PlaneAngleUnitValue(
     json['unit'] as String,
-    json['value'],
+    (json['value'] as num)?.toDouble(),
   );
 }
 

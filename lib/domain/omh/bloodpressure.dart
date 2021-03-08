@@ -1,5 +1,5 @@
-import 'package:openmhealth_schemas/openmhealth_schemas.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:openmhealth_schemas/openmhealth_schemas.dart';
 
 part 'bloodpressure.g.dart';
 
@@ -11,17 +11,21 @@ part 'bloodpressure.g.dart';
 /// See <a href="http://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_blood-pressure">blood-pressure</a>
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class BloodPressure extends Measure {
-  static SchemaId SCHEMA_ID =
-      new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, SchemaSupport.BLOOD_PRESSURE, new SchemaVersion(1, 0));
+  static SchemaId SCHEMA_ID = new SchemaId.withVersion(
+      SchemaSupport.OMH_NAMESPACE,
+      SchemaSupport.BLOOD_PRESSURE,
+      new SchemaVersion(1, 0));
 
   SystolicBloodPressure systolicBloodPressure;
   DiastolicBloodPressure diastolicBloodPressure;
   String positionDuringMeasurement;
 
   /// Creates a [BloodPressure]. The [systolicBloodPressure] and [diastolicBloodPressure] are required according to the OMH definition.
-  BloodPressure(this.systolicBloodPressure, this.diastolicBloodPressure, {this.positionDuringMeasurement});
+  BloodPressure(this.systolicBloodPressure, this.diastolicBloodPressure,
+      {this.positionDuringMeasurement});
 
-  factory BloodPressure.fromJson(Map<String, dynamic> json) => _$BloodPressureFromJson(json);
+  factory BloodPressure.fromJson(Map<String, dynamic> json) =>
+      _$BloodPressureFromJson(json);
 
   Map<String, dynamic> toJson() => _$BloodPressureToJson(this);
 
@@ -36,11 +40,14 @@ class BloodPressure extends Measure {
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class SystolicBloodPressure extends UnitValue {
   static SchemaId SCHEMA_ID = new SchemaId.withVersion(
-      SchemaSupport.OMH_NAMESPACE, SchemaSupport.SYSTOLIC_BLOOD_PRESSURE, new SchemaVersion(1, 0));
+      SchemaSupport.OMH_NAMESPACE,
+      SchemaSupport.SYSTOLIC_BLOOD_PRESSURE,
+      new SchemaVersion(1, 0));
 
-  SystolicBloodPressure(String unit, value) : super(unit, value);
+  SystolicBloodPressure(String unit, double value) : super(unit, value);
 
-  factory SystolicBloodPressure.fromJson(Map<String, dynamic> json) => _$SystolicBloodPressureFromJson(json);
+  factory SystolicBloodPressure.fromJson(Map<String, dynamic> json) =>
+      _$SystolicBloodPressureFromJson(json);
 
   Map<String, dynamic> toJson() => _$SystolicBloodPressureToJson(this);
 
@@ -55,11 +62,14 @@ class SystolicBloodPressure extends UnitValue {
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class DiastolicBloodPressure extends UnitValue {
   static SchemaId SCHEMA_ID = new SchemaId.withVersion(
-      SchemaSupport.OMH_NAMESPACE, SchemaSupport.DIASTOLIC_BLOOD_PRESSURE, new SchemaVersion(1, 0));
+      SchemaSupport.OMH_NAMESPACE,
+      SchemaSupport.DIASTOLIC_BLOOD_PRESSURE,
+      new SchemaVersion(1, 0));
 
-  DiastolicBloodPressure(String unit, value) : super(unit, value);
+  DiastolicBloodPressure(String unit, double value) : super(unit, value);
 
-  factory DiastolicBloodPressure.fromJson(Map<String, dynamic> json) => _$DiastolicBloodPressureFromJson(json);
+  factory DiastolicBloodPressure.fromJson(Map<String, dynamic> json) =>
+      _$DiastolicBloodPressureFromJson(json);
 
   Map<String, dynamic> toJson() => _$DiastolicBloodPressureToJson(this);
 
