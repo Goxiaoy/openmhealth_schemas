@@ -12,8 +12,8 @@ class TimeFrame extends Object with AdditionalPropertySupport implements SchemaS
   static SchemaId SCHEMA_ID =
       new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, SchemaSupport.TIME_FRAME, new SchemaVersion(1, 0));
 
-  TimeInterval timeInterval;
-  DateTime dateTime;
+  TimeInterval? timeInterval;
+  DateTime? dateTime;
 
   TimeFrame({this.timeInterval, this.dateTime});
 
@@ -36,11 +36,11 @@ class TimeInterval extends Object with AdditionalPropertySupport implements Sche
   static SchemaId SCHEMA_ID =
       new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, SchemaSupport.TIME_INTERVAL, new SchemaVersion(1, 0));
 
-  DateTime startDateTime;
-  DateTime endDateTime;
-  DurationUnitValue duration;
-  DateTime date;
-  String partOfDay;
+  DateTime? startDateTime;
+  DateTime? endDateTime;
+  DurationUnitValue? duration;
+  DateTime? date;
+  String? partOfDay;
 
   /// All properties are optional (according to OMH specification).
   ///
@@ -64,7 +64,7 @@ class DurationUnitValue extends UnitValue {
   static SchemaId SCHEMA_ID =
       new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, "duration-unit-value", new SchemaVersion(1, 0));
 
-  DurationUnitValue(String unit, double value) : super(unit, value);
+  DurationUnitValue(String? unit, double? value) : super(unit, value);
 
   factory DurationUnitValue.fromJson(Map<String, dynamic> json) => _$DurationUnitValueFromJson(json);
 

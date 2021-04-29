@@ -13,10 +13,10 @@ class PhysicalActivity extends Measure {
   static SchemaId SCHEMA_ID =
       new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, SchemaSupport.ACTIVITY, new SchemaVersion(1, 2));
 
-  String activityName;
-  LengthUnitValue distance;
-  String reportedActivityIntensity;
-  KcalUnitValue caloriesBurned;
+  String? activityName;
+  LengthUnitValue? distance;
+  String? reportedActivityIntensity;
+  KcalUnitValue? caloriesBurned;
 
   /// Creates a [PhysicalActivity]. The [activityName] is required according to the OMH definition.
   PhysicalActivity(
@@ -63,7 +63,7 @@ class KcalUnitValue extends UnitValue {
   static SchemaId SCHEMA_ID =
       new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, "kcal-unit-value", new SchemaVersion(1, 0));
 
-  KcalUnitValue(String unit, double value) : super(unit, value);
+  KcalUnitValue(String? unit, double? value) : super(unit, value);
 
   factory KcalUnitValue.fromJson(Map<String, dynamic> json) => _$KcalUnitValueFromJson(json);
 
@@ -84,8 +84,8 @@ class StepCount extends Measure {
   static SchemaId SCHEMA_ID =
       new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, SchemaSupport.STEP_COUNT, new SchemaVersion(2, 0));
 
-  int stepCount;
-  String descriptiveStatisticDenominator;
+  int? stepCount;
+  String? descriptiveStatisticDenominator;
 
   /// Creates a [StepCount]. The [stepCount] is required according to the OMH definition.
   StepCount(this.stepCount);
@@ -109,9 +109,9 @@ class CaloriesBurned extends Measure {
   static SchemaId SCHEMA_ID =
       new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, SchemaSupport.CALORIES, new SchemaVersion(1, 0));
 
-  KcalUnitValue kcalBurned;
-  String activityName;
-  String descriptiveStatisticDenominator;
+  KcalUnitValue? kcalBurned;
+  String? activityName;
+  String? descriptiveStatisticDenominator;
 
   /// Creates a [CaloriesBurned]. The [kcalBurned] is required according to the OMH definition.
   CaloriesBurned(this.kcalBurned, {this.activityName, this.descriptiveStatisticDenominator});
@@ -134,7 +134,7 @@ class MinutesModerateActivity extends Measure {
   static SchemaId SCHEMA_ID = new SchemaId.withVersion(
       SchemaSupport.OMH_NAMESPACE, SchemaSupport.MINUTES_MODERATE_ACTIVITY, new SchemaVersion(1, 0));
 
-  DurationUnitValue minutesModerateActivity;
+  DurationUnitValue? minutesModerateActivity;
 
   /// Creates a [MinutesModerateActivity]. The [minutesModerateActivity] is required according to the OMH definition.
   MinutesModerateActivity(this.minutesModerateActivity);

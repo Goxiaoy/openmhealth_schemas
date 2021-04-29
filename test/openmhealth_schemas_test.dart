@@ -10,7 +10,7 @@ void main() {
           new PlaneAngleUnitValue(PlaneAngleUnit.DEGREE_OF_ARC, -105.21440124511719),
           elevation: new LengthUnitValue((LengthUnit.METER), 1548.5));
 
-      expect(position.elevation.value, 1548.5);
+      expect(position.elevation!.value, 1548.5);
 
       print(position.latitude.toString());
       print(position.longitude.toString());
@@ -26,10 +26,10 @@ void main() {
       expect(activity.reportedActivityIntensity, "light");
 
       CaloriesBurned cal = new CaloriesBurned(new KcalUnitValue((KcalUnit.KILOCALORIE), 23.2));
-      expect(cal.kcalBurned.value, 23.2);
+      expect(cal.kcalBurned!.value, 23.2);
 
       MinutesModerateActivity mma = new MinutesModerateActivity(new DurationUnitValue(DurationUnit.MINUTE, 12.3));
-      expect(mma.minutesModerateActivity.value, 12.3);
+      expect(mma.minutesModerateActivity!.value, 12.3);
     });
 
     test('- step count', () {
@@ -44,9 +44,9 @@ void main() {
       steps.effectiveTimeFrame = new TimeFrame(timeInterval: time);
 
       expect(steps.stepCount, 12000);
-      expect(steps.effectiveTimeFrame.dateTime, null);
-      expect(steps.effectiveTimeFrame.timeInterval.startDateTime, start);
-      expect(steps.effectiveTimeFrame.timeInterval.endDateTime, end);
+      expect(steps.effectiveTimeFrame!.dateTime, null);
+      expect(steps.effectiveTimeFrame!.timeInterval!.startDateTime, start);
+      expect(steps.effectiveTimeFrame!.timeInterval!.endDateTime, end);
     });
 
     test('- acceleration', () {
@@ -62,9 +62,9 @@ void main() {
       acc.effectiveTimeFrame = new TimeFrame(timeInterval: time);
 
       expect(acc.sensor_body_location, "right hip");
-      expect(acc.effectiveTimeFrame.dateTime, null);
-      expect(acc.effectiveTimeFrame.timeInterval.startDateTime, start);
-      expect(acc.effectiveTimeFrame.timeInterval.endDateTime, end);
+      expect(acc.effectiveTimeFrame!.dateTime, null);
+      expect(acc.effectiveTimeFrame!.timeInterval!.startDateTime, start);
+      expect(acc.effectiveTimeFrame!.timeInterval!.endDateTime, end);
     });
 
     test('- blood pressure', () {
@@ -73,8 +73,8 @@ void main() {
           new DiastolicBloodPressure(BloodPressureUnit.MM_OF_MERCURY, 80.0),
           positionDuringMeasurement: PositionDuringMeasurement.SITTING);
 
-      expect(bp.diastolicBloodPressure.value, 80);
-      expect(bp.systolicBloodPressure.value, 160);
+      expect(bp.diastolicBloodPressure!.value, 80);
+      expect(bp.systolicBloodPressure!.value, 160);
       expect(bp.positionDuringMeasurement, "sitting");
     });
 
@@ -83,7 +83,7 @@ void main() {
       hr.userNotes = "I felt quite dizzy";
       hr.effectiveTimeFrame = new TimeFrame(dateTime: DateTime.now());
 
-      expect(hr.heartRate.value, 50);
+      expect(hr.heartRate!.value, 50);
       expect(hr.userNotes, isNotNull);
 
       print("\nHeartRate:\n" + _encode(hr));
@@ -94,19 +94,19 @@ void main() {
 
       SurveyItem item_1 = SurveyItem(SurveyQuestion("How are you doing?"));
       item_1.answeredDateTime = DateTime.now();
-      item_1.answers.add(SurveyCategoricalAnswer(value: ({"1": "Fine, thank you", "2": "OK"})));
+      item_1.answers!.add(SurveyCategoricalAnswer(value: ({"1": "Fine, thank you", "2": "OK"})));
 
       SurveyItem item_2 = SurveyItem(SurveyQuestion("When was the '99 Lufttbaloons' album released?"));
       item_2.answeredDateTime = DateTime.now();
-      item_2.answers.add(SurveyDateAnswer(DateTime(1984)));
+      item_2.answers!.add(SurveyDateAnswer(DateTime(1984)));
 
-      survey.items.add(item_1);
-      survey.items.add(item_2);
+      survey.items!.add(item_1);
+      survey.items!.add(item_2);
 
       survey.deliveryDetails = SurveyDeliveryDetails(
           startDateTime: DateTime(1998), endDateTime: DateTime.now(), endStatus: SurveyEndStatus.COMPLETED);
 
-      expect(survey.items.length, 2);
+      expect(survey.items!.length, 2);
       expect(survey.deliveryDetails, isNotNull);
 
       print("\nSurvey:\n" + _encode(survey));
@@ -198,7 +198,7 @@ void main() {
       final p_1_json = _encode(p_1);
       print("Geoposition:\n" + p_1_json);
       final p_2 = Geoposition.fromJson(json.decode(p_1_json) as Map<String, dynamic>);
-      expect(p_2.longitude.value, p_1.longitude.value);
+      expect(p_2.longitude!.value, p_1.longitude!.value);
       expect(_encode(p_2), equals(p_1_json));
 
       BloodPressure bp_1 = new BloodPressure(new SystolicBloodPressure((BloodPressureUnit.MM_OF_MERCURY), 160.0),

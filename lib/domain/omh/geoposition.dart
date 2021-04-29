@@ -14,15 +14,15 @@ class Geoposition extends Measure {
       SchemaSupport.GEOPOSITION,
       new SchemaVersion(1, 0));
 
-  PlaneAngleUnitValue latitude;
-  PlaneAngleUnitValue longitude;
+  PlaneAngleUnitValue? latitude;
+  PlaneAngleUnitValue? longitude;
 
   // TODO add accuracy
-  LengthUnitValue elevation;
-  int numberOfSatellitesInView;
-  int numberOfSatellitesInFix;
+  LengthUnitValue? elevation;
+  int? numberOfSatellitesInView;
+  int? numberOfSatellitesInFix;
   //List<TypedUnitValue<SignalToNoiseRatioUnit>> satelliteSignalStrengths;
-  String positioningSystem;
+  String? positioningSystem;
 
   /// Creates a [Geoposition]. The [latitude] and [longitude] are required according to the OMH definition.
   Geoposition(this.latitude, this.longitude,
@@ -53,7 +53,7 @@ class PlaneAngleUnitValue extends UnitValue {
       "plane-angle-unit-value",
       new SchemaVersion(1, 0));
 
-  PlaneAngleUnitValue(String unit, double value) : super(unit, value);
+  PlaneAngleUnitValue(String? unit, double? value) : super(unit, value);
 
   factory PlaneAngleUnitValue.fromJson(Map<String, dynamic> json) =>
       _$PlaneAngleUnitValueFromJson(json);

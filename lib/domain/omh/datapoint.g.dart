@@ -8,9 +8,7 @@ part of 'datapoint.dart';
 
 DataPoint _$DataPointFromJson(Map<String, dynamic> json) {
   return DataPoint(
-    json['body'] == null
-        ? null
-        : Measure.fromJson(json['body'] as Map<String, dynamic>),
+    Measure.fromJson(json['body'] as Map<String, dynamic>),
   )..header = json['header'] == null
       ? null
       : DataPointHeader.fromJson(json['header'] as Map<String, dynamic>);
@@ -32,14 +30,14 @@ Map<String, dynamic> _$DataPointToJson(DataPoint instance) {
 
 DataPointHeader _$DataPointHeaderFromJson(Map<String, dynamic> json) {
   return DataPointHeader(
-    json['id'] as String,
+    json['id'] as String?,
     json['creation_date_time'] == null
         ? null
         : DateTime.parse(json['creation_date_time'] as String),
     json['schema_id'] == null
         ? null
         : SchemaId.fromJson(json['schema_id'] as Map<String, dynamic>),
-    userId: json['user_id'] as String,
+    userId: json['user_id'] as String?,
     acquisitionProvenance: json['acquisition_provenance'] == null
         ? null
         : DataPointAcquisitionProvenance.fromJson(
@@ -68,8 +66,8 @@ Map<String, dynamic> _$DataPointHeaderToJson(DataPointHeader instance) {
 DataPointAcquisitionProvenance _$DataPointAcquisitionProvenanceFromJson(
     Map<String, dynamic> json) {
   return DataPointAcquisitionProvenance(
-    json['source_name'] as String,
-    modality: json['modality'] as String,
+    json['source_name'] as String?,
+    modality: json['modality'] as String?,
     sourceCreationDateTime: json['source_creation_date_time'] == null
         ? null
         : DateTime.parse(json['source_creation_date_time'] as String),

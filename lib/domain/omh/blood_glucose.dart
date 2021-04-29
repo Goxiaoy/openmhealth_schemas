@@ -18,18 +18,18 @@ class BloodGlucose extends Measure {
       new SchemaVersion(1, 0));
 
   /// Creates a [BloodGlucose]. The [bloodGlucose] and [effectiveTimeFrame] are required according to the OMH definition.
-  BloodGlucose(this.bloodGlucose, TimeFrame effectiveTimeFrame,
+  BloodGlucose(this.bloodGlucose, TimeFrame? effectiveTimeFrame,
       {this.temporalRelationshipToMeal, this.temporalRelationshipToSleep}) {
     this.effectiveTimeFrame = effectiveTimeFrame;
   }
 
   @override
-  TimeFrame effectiveTimeFrame;
+  TimeFrame? effectiveTimeFrame;
 
-  BloodGlucoseUnitValue bloodGlucose;
+  BloodGlucoseUnitValue? bloodGlucose;
 
-  String temporalRelationshipToMeal;
-  String temporalRelationshipToSleep;
+  String? temporalRelationshipToMeal;
+  String? temporalRelationshipToSleep;
 
   factory BloodGlucose.fromJson(Map<String, dynamic> json) =>
       _$BloodGlucoseFromJson(json);
@@ -51,7 +51,7 @@ class BloodGlucoseUnitValue extends UnitValue {
       "blood-glucose-unit-value",
       new SchemaVersion(1, 0));
 
-  BloodGlucoseUnitValue(String unit, double value) : super(unit, value);
+  BloodGlucoseUnitValue(String? unit, double? value) : super(unit, value);
 
   factory BloodGlucoseUnitValue.fromJson(Map<String, dynamic> json) =>
       _$BloodGlucoseUnitValueFromJson(json);

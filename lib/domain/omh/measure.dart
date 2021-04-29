@@ -9,9 +9,9 @@ class Measure extends Object with AdditionalPropertySupport implements SchemaSup
   static SchemaId SCHEMA_ID =
       new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, SchemaSupport.MEASURE, new SchemaVersion(1, 0));
 
-  TimeFrame effectiveTimeFrame;
-  String descriptiveStatistic;
-  String userNotes;
+  TimeFrame? effectiveTimeFrame;
+  String? descriptiveStatistic;
+  String? userNotes;
 
   Measure() : super();
 
@@ -37,7 +37,7 @@ abstract class AdditionalPropertySupport {
   }
 
   /// Gets an additional property.
-  Object getAdditionalProperty(String name) {
+  Object? getAdditionalProperty(String name) {
     return _additionalProperties[name];
   }
 

@@ -12,8 +12,8 @@ Measure _$MeasureFromJson(Map<String, dynamic> json) {
         ? null
         : TimeFrame.fromJson(
             json['effective_time_frame'] as Map<String, dynamic>)
-    ..descriptiveStatistic = json['descriptive_statistic'] as String
-    ..userNotes = json['user_notes'] as String;
+    ..descriptiveStatistic = json['descriptive_statistic'] as String?
+    ..userNotes = json['user_notes'] as String?;
 }
 
 Map<String, dynamic> _$MeasureToJson(Measure instance) {

@@ -8,8 +8,8 @@ part of 'units.dart';
 
 UnitValue _$UnitValueFromJson(Map<String, dynamic> json) {
   return UnitValue(
-    json['unit'] as String,
-    (json['value'] as num)?.toDouble(),
+    json['unit'] as String?,
+    (json['value'] as num?)?.toDouble(),
   );
 }
 
@@ -29,8 +29,8 @@ Map<String, dynamic> _$UnitValueToJson(UnitValue instance) {
 
 LengthUnitValue _$LengthUnitValueFromJson(Map<String, dynamic> json) {
   return LengthUnitValue(
-    json['unit'] as String,
-    (json['value'] as num)?.toDouble(),
+    json['unit'] as String?,
+    (json['value'] as num?)?.toDouble(),
   );
 }
 

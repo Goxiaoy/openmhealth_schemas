@@ -43,7 +43,7 @@ TimeInterval _$TimeIntervalFromJson(Map<String, dynamic> json) {
         ? null
         : DurationUnitValue.fromJson(json['duration'] as Map<String, dynamic>),
     date: json['date'] == null ? null : DateTime.parse(json['date'] as String),
-    partOfDay: json['part_of_day'] as String,
+    partOfDay: json['part_of_day'] as String?,
   );
 }
 
@@ -66,8 +66,8 @@ Map<String, dynamic> _$TimeIntervalToJson(TimeInterval instance) {
 
 DurationUnitValue _$DurationUnitValueFromJson(Map<String, dynamic> json) {
   return DurationUnitValue(
-    json['unit'] as String,
-    (json['value'] as num)?.toDouble(),
+    json['unit'] as String?,
+    (json['value'] as num?)?.toDouble(),
   );
 }
 

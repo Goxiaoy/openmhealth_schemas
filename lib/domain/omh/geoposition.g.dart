@@ -19,16 +19,16 @@ Geoposition _$GeopositionFromJson(Map<String, dynamic> json) {
     elevation: json['elevation'] == null
         ? null
         : LengthUnitValue.fromJson(json['elevation'] as Map<String, dynamic>),
-    numberOfSatellitesInView: json['number_of_satellites_in_view'] as int,
-    numberOfSatellitesInFix: json['number_of_satellites_in_fix'] as int,
-    positioningSystem: json['positioning_system'] as String,
+    numberOfSatellitesInView: json['number_of_satellites_in_view'] as int?,
+    numberOfSatellitesInFix: json['number_of_satellites_in_fix'] as int?,
+    positioningSystem: json['positioning_system'] as String?,
   )
     ..effectiveTimeFrame = json['effective_time_frame'] == null
         ? null
         : TimeFrame.fromJson(
             json['effective_time_frame'] as Map<String, dynamic>)
-    ..descriptiveStatistic = json['descriptive_statistic'] as String
-    ..userNotes = json['user_notes'] as String;
+    ..descriptiveStatistic = json['descriptive_statistic'] as String?
+    ..userNotes = json['user_notes'] as String?;
 }
 
 Map<String, dynamic> _$GeopositionToJson(Geoposition instance) {
@@ -55,8 +55,8 @@ Map<String, dynamic> _$GeopositionToJson(Geoposition instance) {
 
 PlaneAngleUnitValue _$PlaneAngleUnitValueFromJson(Map<String, dynamic> json) {
   return PlaneAngleUnitValue(
-    json['unit'] as String,
-    (json['value'] as num)?.toDouble(),
+    json['unit'] as String?,
+    (json['value'] as num?)?.toDouble(),
   );
 }
 

@@ -1,5 +1,5 @@
-import 'package:openmhealth_schemas/openmhealth_schemas.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:openmhealth_schemas/openmhealth_schemas.dart';
 
 part 'survey.g.dart';
 
@@ -10,17 +10,17 @@ part 'survey.g.dart';
 /// See <a href="https://github.com/openmhealth/schemas/blob/feature/generic-survey/schema/omh/survey-0.1.json">survey</a>
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class Survey extends Measure {
-  static final SchemaId SCHEMA_ID =
-      SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, SchemaSupport.SURVEY, SchemaVersion(0, 1));
+  static final SchemaId SCHEMA_ID = SchemaId.withVersion(
+      SchemaSupport.OMH_NAMESPACE, SchemaSupport.SURVEY, SchemaVersion(0, 1));
 
   /// The list of questions and answers that make up this survey.
-  List<SurveyItem> items = List<SurveyItem>();
+  List<SurveyItem>? items = [];
 
   /// The operational details of delivering this survey.
-  SurveyDeliveryDetails deliveryDetails;
+  SurveyDeliveryDetails? deliveryDetails;
 
   /// The score calculated for the survey.
-  UnitValue score;
+  UnitValue? score;
 
   Survey();
 
@@ -39,27 +39,30 @@ class Survey extends Measure {
 /// See <a href="https://github.com/openmhealth/schemas/blob/feature/generic-survey/schema/omh/survey-item-0.1.json">survey</a>
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class SurveyItem extends Measure {
-  static SchemaId SCHEMA_ID =
-      new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, SchemaSupport.SURVEY_ITEM, new SchemaVersion(0, 1));
+  static SchemaId SCHEMA_ID = new SchemaId.withVersion(
+      SchemaSupport.OMH_NAMESPACE,
+      SchemaSupport.SURVEY_ITEM,
+      new SchemaVersion(0, 1));
 
   /// The question being asked.
-  SurveyQuestion question;
+  SurveyQuestion? question;
 
   ///A list of answers to the question. This list is empty if the question isn't answered,
   ///and may have multiple elements if more than one answer is provided.
-  List<AbstractSurveyAnswer> answers = List<AbstractSurveyAnswer>();
+  List<AbstractSurveyAnswer>? answers = [];
 
   /// The date time at which this item was presented to the participant.
-  DateTime askedDateTime;
+  DateTime? askedDateTime;
 
   /// The date time at which the answer was provided.
   /// If multiple answers are provided, the suggestion is to use the last answer's date time.
-  DateTime answeredDateTime;
+  DateTime? answeredDateTime;
 
   /// Creates a [SurveyItem]. The [question] is required according to the OMH definition.
   SurveyItem(this.question);
 
-  factory SurveyItem.fromJson(Map<String, dynamic> json) => _$SurveyItemFromJson(json);
+  factory SurveyItem.fromJson(Map<String, dynamic> json) =>
+      _$SurveyItemFromJson(json);
   Map<String, dynamic> toJson() => _$SurveyItemToJson(this);
 
   @override
@@ -74,19 +77,22 @@ class SurveyItem extends Measure {
 /// See <a href="https://github.com/openmhealth/schemas/blob/feature/generic-survey/schema/omh/survey-question-0.1.json">survey-question</a>
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class SurveyQuestion extends Measure {
-  static SchemaId SCHEMA_ID =
-      new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, SchemaSupport.SURVEY_QUESTION, new SchemaVersion(0, 1));
+  static SchemaId SCHEMA_ID = new SchemaId.withVersion(
+      SchemaSupport.OMH_NAMESPACE,
+      SchemaSupport.SURVEY_QUESTION,
+      new SchemaVersion(0, 1));
 
   /// A label used to identify the question.
-  String label;
+  String? label;
 
   ///The text of the question.
-  String text;
+  String? text;
 
   /// Creates a [SurveyQuestion]. The [text] is required according to the OMH definition.
   SurveyQuestion(this.text, {this.label});
 
-  factory SurveyQuestion.fromJson(Map<String, dynamic> json) => _$SurveyQuestionFromJson(json);
+  factory SurveyQuestion.fromJson(Map<String, dynamic> json) =>
+      _$SurveyQuestionFromJson(json);
   Map<String, dynamic> toJson() => _$SurveyQuestionToJson(this);
 
   @override
@@ -98,12 +104,15 @@ class SurveyQuestion extends Measure {
 /// An abstract base class for all answer types.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class AbstractSurveyAnswer extends Measure {
-  static SchemaId SCHEMA_ID =
-      new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, SchemaSupport.SURVEY_ANSWER, new SchemaVersion(0, 1));
+  static SchemaId SCHEMA_ID = new SchemaId.withVersion(
+      SchemaSupport.OMH_NAMESPACE,
+      SchemaSupport.SURVEY_ANSWER,
+      new SchemaVersion(0, 1));
 
   AbstractSurveyAnswer();
 
-  factory AbstractSurveyAnswer.fromJson(Map<String, dynamic> json) => _$AbstractSurveyAnswerFromJson(json);
+  factory AbstractSurveyAnswer.fromJson(Map<String, dynamic> json) =>
+      _$AbstractSurveyAnswerFromJson(json);
   Map<String, dynamic> toJson() => _$AbstractSurveyAnswerToJson(this);
 
   @override
@@ -120,15 +129,16 @@ class AbstractSurveyAnswer extends Measure {
 /// See <a href="https://github.com/openmhealth/schemas/blob/feature/generic-survey/schema/omh/survey-answer-0.1.json">survey-answer</a>
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class SurveyAnswer extends AbstractSurveyAnswer {
-  static SchemaId SCHEMA_ID =
-      new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, "survey-answer", new SchemaVersion(0, 1));
+  static SchemaId SCHEMA_ID = new SchemaId.withVersion(
+      SchemaSupport.OMH_NAMESPACE, "survey-answer", new SchemaVersion(0, 1));
 
   /// The value of the answer.
-  String value;
+  String? value;
 
   SurveyAnswer([this.value]);
 
-  factory SurveyAnswer.fromJson(Map<String, dynamic> json) => _$SurveyAnswerFromJson(json);
+  factory SurveyAnswer.fromJson(Map<String, dynamic> json) =>
+      _$SurveyAnswerFromJson(json);
   Map<String, dynamic> toJson() => _$SurveyAnswerToJson(this);
 
   @override
@@ -143,16 +153,19 @@ class SurveyAnswer extends AbstractSurveyAnswer {
 /// See <a href="https://github.com/openmhealth/schemas/blob/feature/generic-survey/schema/omh/survey-categorical-answer-0.1.json">survey-categorical-answer</a>
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class SurveyCategoricalAnswer extends AbstractSurveyAnswer {
-  static SchemaId SCHEMA_ID =
-      new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, "survey-categorical-answer", new SchemaVersion(0, 1));
+  static SchemaId SCHEMA_ID = new SchemaId.withVersion(
+      SchemaSupport.OMH_NAMESPACE,
+      "survey-categorical-answer",
+      new SchemaVersion(0, 1));
 
   /// The list of selected categories. For example, `'1' -> 'Never'` on a 7-point Likert scale.
   /// Note that this map supports the selection of multiple answers.
-  Map<String, String> value;
+  Map<String, String>? value;
 
   SurveyCategoricalAnswer({this.value});
 
-  factory SurveyCategoricalAnswer.fromJson(Map<String, dynamic> json) => _$SurveyCategoricalAnswerFromJson(json);
+  factory SurveyCategoricalAnswer.fromJson(Map<String, dynamic> json) =>
+      _$SurveyCategoricalAnswerFromJson(json);
   Map<String, dynamic> toJson() => _$SurveyCategoricalAnswerToJson(this);
 
   @override
@@ -167,15 +180,18 @@ class SurveyCategoricalAnswer extends AbstractSurveyAnswer {
 /// See <a href="https://github.com/openmhealth/schemas/blob/feature/generic-survey/schema/omh/survey-date-answer-0.1.json">survey-date-answer</a>
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class SurveyDateAnswer extends AbstractSurveyAnswer {
-  static SchemaId SCHEMA_ID =
-      new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, "survey-date-answer", new SchemaVersion(0, 1));
+  static SchemaId SCHEMA_ID = new SchemaId.withVersion(
+      SchemaSupport.OMH_NAMESPACE,
+      "survey-date-answer",
+      new SchemaVersion(0, 1));
 
   /// The date value. The time part may be used or ignored.
-  DateTime value;
+  DateTime? value;
 
   SurveyDateAnswer([this.value]);
 
-  factory SurveyDateAnswer.fromJson(Map<String, dynamic> json) => _$SurveyDateAnswerFromJson(json);
+  factory SurveyDateAnswer.fromJson(Map<String, dynamic> json) =>
+      _$SurveyDateAnswerFromJson(json);
   Map<String, dynamic> toJson() => _$SurveyDateAnswerToJson(this);
 
   @override
@@ -190,16 +206,19 @@ class SurveyDateAnswer extends AbstractSurveyAnswer {
 /// See <a href="https://github.com/openmhealth/schemas/blob/feature/generic-survey/schema/omh/survey-time-answer-0.1.json">survey-time-answer</a>
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class SurveyTimeAnswer extends AbstractSurveyAnswer {
-  static SchemaId SCHEMA_ID =
-      new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, "survey-time-answer", new SchemaVersion(0, 1));
+  static SchemaId SCHEMA_ID = new SchemaId.withVersion(
+      SchemaSupport.OMH_NAMESPACE,
+      "survey-time-answer",
+      new SchemaVersion(0, 1));
 
   /// A time of day value (hours and minutes) in 24 hours format.
   /// RegExp pattern : `^([01]\\d|2[0-3]):[0-5]\\d$`
-  String value;
+  String? value;
 
   SurveyTimeAnswer([this.value]) : super();
 
-  factory SurveyTimeAnswer.fromJson(Map<String, dynamic> json) => _$SurveyTimeAnswerFromJson(json);
+  factory SurveyTimeAnswer.fromJson(Map<String, dynamic> json) =>
+      _$SurveyTimeAnswerFromJson(json);
   Map<String, dynamic> toJson() => _$SurveyTimeAnswerToJson(this);
 
   @override
@@ -214,15 +233,18 @@ class SurveyTimeAnswer extends AbstractSurveyAnswer {
 /// See <a href="https://github.com/openmhealth/schemas/blob/feature/generic-survey/schema/omh/survey-unit-value-answer-0.1.json">survey-unit-value-answer</a>
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class SurveyUnitValueAnswer extends AbstractSurveyAnswer {
-  static SchemaId SCHEMA_ID =
-      new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, "survey-unit-value-answer", new SchemaVersion(0, 1));
+  static SchemaId SCHEMA_ID = new SchemaId.withVersion(
+      SchemaSupport.OMH_NAMESPACE,
+      "survey-unit-value-answer",
+      new SchemaVersion(0, 1));
 
   /// The unit value.
-  UnitValue value;
+  UnitValue? value;
 
   SurveyUnitValueAnswer([this.value]) : super();
 
-  factory SurveyUnitValueAnswer.fromJson(Map<String, dynamic> json) => _$SurveyUnitValueAnswerFromJson(json);
+  factory SurveyUnitValueAnswer.fromJson(Map<String, dynamic> json) =>
+      _$SurveyUnitValueAnswerFromJson(json);
   Map<String, dynamic> toJson() => _$SurveyUnitValueAnswerToJson(this);
 
   @override
@@ -237,23 +259,25 @@ class SurveyUnitValueAnswer extends AbstractSurveyAnswer {
 /// See <a href="https://github.com/openmhealth/schemas/blob/feature/generic-survey/schema/omh/survey-0.1.json">survey</a>
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class SurveyDeliveryDetails extends Measure {
-  static SchemaId SCHEMA_ID = new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, "survey", new SchemaVersion(0, 1));
+  static SchemaId SCHEMA_ID = new SchemaId.withVersion(
+      SchemaSupport.OMH_NAMESPACE, "survey", new SchemaVersion(0, 1));
 
   /// The date time at which this survey was started.
-  DateTime startDateTime;
+  DateTime? startDateTime;
 
   /// The date time at which this survey was finished (not necessarily completed).
-  DateTime endDateTime;
+  DateTime? endDateTime;
 
   /// The way this survey was ended by the participant. See [SurveyEndStatus].
   /// Abandoned means some answers were provided.
   /// Missed means no answers were provided.
-  String endStatus;
+  String? endStatus;
 
   /// Creates a [Survey]. The [activityName] is required according to the OMH definition.
   SurveyDeliveryDetails({this.startDateTime, this.endDateTime, this.endStatus});
 
-  factory SurveyDeliveryDetails.fromJson(Map<String, dynamic> json) => _$SurveyDeliveryDetailsFromJson(json);
+  factory SurveyDeliveryDetails.fromJson(Map<String, dynamic> json) =>
+      _$SurveyDeliveryDetailsFromJson(json);
   Map<String, dynamic> toJson() => _$SurveyDeliveryDetailsToJson(this);
 
   @override
@@ -272,17 +296,19 @@ class SurveyEndStatus {
 /// The score calculated for the survey. This can be a number or a combination of numbers and/or string.
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class SurveyScore extends Measure {
-  static SchemaId SCHEMA_ID = new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, "survey", new SchemaVersion(0, 1));
+  static SchemaId SCHEMA_ID = new SchemaId.withVersion(
+      SchemaSupport.OMH_NAMESPACE, "survey", new SchemaVersion(0, 1));
 
   /// A numerical score for this [Survey].
-  int score;
+  int? score;
 
   /// A string (e.g. JSON) representation of this score.
-  String value;
+  String? value;
 
   SurveyScore({this.score, this.value});
 
-  factory SurveyScore.fromJson(Map<String, dynamic> json) => _$SurveyScoreFromJson(json);
+  factory SurveyScore.fromJson(Map<String, dynamic> json) =>
+      _$SurveyScoreFromJson(json);
   Map<String, dynamic> toJson() => _$SurveyScoreToJson(this);
 
   @override

@@ -13,9 +13,9 @@ class HeartRate extends Measure {
   static SchemaId SCHEMA_ID =
       new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, SchemaSupport.HEART_RATE, new SchemaVersion(1, 1));
 
-  HeartRateUnitValue heartRate;
-  String temporalRelationshipToPhysicalActivity;
-  String temporalRelationshipToSleep;
+  HeartRateUnitValue? heartRate;
+  String? temporalRelationshipToPhysicalActivity;
+  String? temporalRelationshipToSleep;
 
   /// Creates a [PhysicalActivity]. The [activityName] is required according to the OMH definition.
   HeartRate(this.heartRate, {this.temporalRelationshipToPhysicalActivity, this.temporalRelationshipToSleep});
@@ -39,8 +39,8 @@ class RrInterval extends Measure {
   static SchemaId SCHEMA_ID =
       new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, SchemaSupport.RR_INTERVAL, new SchemaVersion(1, 0));
 
-  RrInterUnitValue rrInterval;
-  String temporalRelationshipToPhysicalActivity;
+  RrInterUnitValue? rrInterval;
+  String? temporalRelationshipToPhysicalActivity;
 
   /// Creates a [PhysicalActivity]. The [activityName] is required according to the OMH definition.
   RrInterval(this.rrInterval, {this.temporalRelationshipToPhysicalActivity});
@@ -61,7 +61,7 @@ class HeartRateUnitValue extends UnitValue {
   static SchemaId SCHEMA_ID =
       new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, "kcal-unit-value", new SchemaVersion(1, 0));
 
-  HeartRateUnitValue(String unit, double value) : super(unit, value);
+  HeartRateUnitValue(String? unit, double? value) : super(unit, value);
 
   factory HeartRateUnitValue.fromJson(Map<String, dynamic> json) => _$HeartRateUnitValueFromJson(json);
   Map<String, dynamic> toJson() => _$HeartRateUnitValueToJson(this);
@@ -79,7 +79,7 @@ class RrInterUnitValue extends UnitValue {
   static SchemaId SCHEMA_ID =
       new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, "kcal-unit-value", new SchemaVersion(1, 0));
 
-  RrInterUnitValue(String unit, double value) : super(unit, value);
+  RrInterUnitValue(String? unit, double? value) : super(unit, value);
 
   factory RrInterUnitValue.fromJson(Map<String, dynamic> json) => _$RrInterUnitValueFromJson(json);
   Map<String, dynamic> toJson() => _$RrInterUnitValueToJson(this);

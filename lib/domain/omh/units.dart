@@ -20,8 +20,8 @@ class UnitValue extends Object
   static SchemaId SCHEMA_ID = new SchemaId.withVersion(
       SchemaSupport.OMH_NAMESPACE, "unit-value", new SchemaVersion(1, 0));
 
-  double value;
-  String unit;
+  double? value;
+  String? unit;
 
   UnitValue(this.unit, this.value);
 
@@ -51,7 +51,7 @@ class LengthUnitValue extends UnitValue {
       new SchemaVersion(1, 0));
 
 //  LengthUnitValue(LengthUnit unit, value) : super(unit.schemaValue, value);
-  LengthUnitValue(String unit, double value) : super(unit, value);
+  LengthUnitValue(String? unit, double? value) : super(unit, value);
 
   factory LengthUnitValue.fromJson(Map<String, dynamic> json) =>
       _$LengthUnitValueFromJson(json);

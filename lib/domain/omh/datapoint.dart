@@ -13,11 +13,11 @@ class DataPoint implements SchemaSupport {
   static SchemaId SCHEMA_ID =
       new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, SchemaSupport.DATA_POINT, new SchemaVersion(1, 0));
 
-  DataPointHeader header;
-  Measure body;
+  DataPointHeader? header;
+  Measure? body;
 
   /// Creates a [DataPoint] encapsulating OMH schema data specified in [body].
-  DataPoint(Measure body, {String userId, DataPointAcquisitionProvenance provenance}) {
+  DataPoint(Measure body, {String? userId, DataPointAcquisitionProvenance? provenance}) {
     String id = new Uuid().v1(); // Generates a time-based version 1 UUID.
     DateTime now = new DateTime.now();
 
@@ -45,11 +45,11 @@ class DataPoint implements SchemaSupport {
 class DataPointHeader implements SchemaSupport {
   static SchemaId SCHEMA_ID = new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, "header", new SchemaVersion(1, 1));
 
-  String id;
-  DateTime creationDateTime;
-  SchemaId schemaId;
-  DataPointAcquisitionProvenance acquisitionProvenance;
-  String userId;
+  String? id;
+  DateTime? creationDateTime;
+  SchemaId? schemaId;
+  DataPointAcquisitionProvenance? acquisitionProvenance;
+  String? userId;
 
   /// Creates a [DataPointHeader]. The [id], [creationDateTime], and [bodySchemaId] are required.
   /// Note, however, that normally you would not create a [DataPointHeader], but instead create a [DataPoint],
@@ -72,9 +72,9 @@ class DataPointHeader implements SchemaSupport {
 /// See  @see <a href="http://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_header">header</a>
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class DataPointAcquisitionProvenance {
-  String sourceName;
-  DateTime sourceCreationDateTime;
-  String modality;
+  String? sourceName;
+  DateTime? sourceCreationDateTime;
+  String? modality;
 
   /// Creates a [DataPointAcquisitionProvenance]. The [sourceName] is required according to the OMH definition.
   DataPointAcquisitionProvenance(this.sourceName, {this.modality, this.sourceCreationDateTime});

@@ -16,9 +16,9 @@ class BloodPressure extends Measure {
       SchemaSupport.BLOOD_PRESSURE,
       new SchemaVersion(1, 0));
 
-  SystolicBloodPressure systolicBloodPressure;
-  DiastolicBloodPressure diastolicBloodPressure;
-  String positionDuringMeasurement;
+  SystolicBloodPressure? systolicBloodPressure;
+  DiastolicBloodPressure? diastolicBloodPressure;
+  String? positionDuringMeasurement;
 
   /// Creates a [BloodPressure]. The [systolicBloodPressure] and [diastolicBloodPressure] are required according to the OMH definition.
   BloodPressure(this.systolicBloodPressure, this.diastolicBloodPressure,
@@ -44,7 +44,7 @@ class SystolicBloodPressure extends UnitValue {
       SchemaSupport.SYSTOLIC_BLOOD_PRESSURE,
       new SchemaVersion(1, 0));
 
-  SystolicBloodPressure(String unit, double value) : super(unit, value);
+  SystolicBloodPressure(String? unit, double? value) : super(unit, value);
 
   factory SystolicBloodPressure.fromJson(Map<String, dynamic> json) =>
       _$SystolicBloodPressureFromJson(json);
@@ -66,7 +66,7 @@ class DiastolicBloodPressure extends UnitValue {
       SchemaSupport.DIASTOLIC_BLOOD_PRESSURE,
       new SchemaVersion(1, 0));
 
-  DiastolicBloodPressure(String unit, double value) : super(unit, value);
+  DiastolicBloodPressure(String? unit, double? value) : super(unit, value);
 
   factory DiastolicBloodPressure.fromJson(Map<String, dynamic> json) =>
       _$DiastolicBloodPressureFromJson(json);

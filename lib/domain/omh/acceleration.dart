@@ -12,10 +12,10 @@ class Acceleration extends Measure {
   static SchemaId SCHEMA_ID =
       new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, SchemaSupport.ACCELERATION, new SchemaVersion(1, 0));
 
-  AccelerationUnitValue acceleration_x;
-  AccelerationUnitValue acceleration_y;
-  AccelerationUnitValue acceleration_z;
-  String sensor_body_location;
+  AccelerationUnitValue? acceleration_x;
+  AccelerationUnitValue? acceleration_y;
+  AccelerationUnitValue? acceleration_z;
+  String? sensor_body_location;
 
   Acceleration(this.acceleration_x, this.acceleration_y, {this.acceleration_z, this.sensor_body_location});
 
@@ -35,7 +35,7 @@ class AccelerationUnitValue extends UnitValue {
   static SchemaId SCHEMA_ID =
       new SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, "acceleration-unit-value", new SchemaVersion(1, 0));
 
-  AccelerationUnitValue(String unit, double value) : super(unit, value);
+  AccelerationUnitValue(String? unit, double? value) : super(unit, value);
 
   factory AccelerationUnitValue.fromJson(Map<String, dynamic> json) => _$AccelerationUnitValueFromJson(json);
   Map<String, dynamic> toJson() => _$AccelerationUnitValueToJson(this);

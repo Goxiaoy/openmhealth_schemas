@@ -16,14 +16,14 @@ BloodPressure _$BloodPressureFromJson(Map<String, dynamic> json) {
         ? null
         : DiastolicBloodPressure.fromJson(
             json['diastolic_blood_pressure'] as Map<String, dynamic>),
-    positionDuringMeasurement: json['position_during_measurement'] as String,
+    positionDuringMeasurement: json['position_during_measurement'] as String?,
   )
     ..effectiveTimeFrame = json['effective_time_frame'] == null
         ? null
         : TimeFrame.fromJson(
             json['effective_time_frame'] as Map<String, dynamic>)
-    ..descriptiveStatistic = json['descriptive_statistic'] as String
-    ..userNotes = json['user_notes'] as String;
+    ..descriptiveStatistic = json['descriptive_statistic'] as String?
+    ..userNotes = json['user_notes'] as String?;
 }
 
 Map<String, dynamic> _$BloodPressureToJson(BloodPressure instance) {
@@ -48,8 +48,8 @@ Map<String, dynamic> _$BloodPressureToJson(BloodPressure instance) {
 SystolicBloodPressure _$SystolicBloodPressureFromJson(
     Map<String, dynamic> json) {
   return SystolicBloodPressure(
-    json['unit'] as String,
-    (json['value'] as num)?.toDouble(),
+    json['unit'] as String?,
+    (json['value'] as num?)?.toDouble(),
   );
 }
 
@@ -71,8 +71,8 @@ Map<String, dynamic> _$SystolicBloodPressureToJson(
 DiastolicBloodPressure _$DiastolicBloodPressureFromJson(
     Map<String, dynamic> json) {
   return DiastolicBloodPressure(
-    json['unit'] as String,
-    (json['value'] as num)?.toDouble(),
+    json['unit'] as String?,
+    (json['value'] as num?)?.toDouble(),
   );
 }
 

@@ -16,12 +16,13 @@ BloodGlucose _$BloodGlucoseFromJson(Map<String, dynamic> json) {
         ? null
         : TimeFrame.fromJson(
             json['effective_time_frame'] as Map<String, dynamic>),
-    temporalRelationshipToMeal: json['temporal_relationship_to_meal'] as String,
+    temporalRelationshipToMeal:
+        json['temporal_relationship_to_meal'] as String?,
     temporalRelationshipToSleep:
-        json['temporal_relationship_to_sleep'] as String,
+        json['temporal_relationship_to_sleep'] as String?,
   )
-    ..descriptiveStatistic = json['descriptive_statistic'] as String
-    ..userNotes = json['user_notes'] as String;
+    ..descriptiveStatistic = json['descriptive_statistic'] as String?
+    ..userNotes = json['user_notes'] as String?;
 }
 
 Map<String, dynamic> _$BloodGlucoseToJson(BloodGlucose instance) {
@@ -47,8 +48,8 @@ Map<String, dynamic> _$BloodGlucoseToJson(BloodGlucose instance) {
 BloodGlucoseUnitValue _$BloodGlucoseUnitValueFromJson(
     Map<String, dynamic> json) {
   return BloodGlucoseUnitValue(
-    json['unit'] as String,
-    (json['value'] as num)?.toDouble(),
+    json['unit'] as String?,
+    (json['value'] as num?)?.toDouble(),
   );
 }
 

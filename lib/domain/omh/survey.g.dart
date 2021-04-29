@@ -12,12 +12,11 @@ Survey _$SurveyFromJson(Map<String, dynamic> json) {
         ? null
         : TimeFrame.fromJson(
             json['effective_time_frame'] as Map<String, dynamic>)
-    ..descriptiveStatistic = json['descriptive_statistic'] as String
-    ..userNotes = json['user_notes'] as String
-    ..items = (json['items'] as List)
-        ?.map((e) =>
-            e == null ? null : SurveyItem.fromJson(e as Map<String, dynamic>))
-        ?.toList()
+    ..descriptiveStatistic = json['descriptive_statistic'] as String?
+    ..userNotes = json['user_notes'] as String?
+    ..items = (json['items'] as List<dynamic>?)
+        ?.map((e) => SurveyItem.fromJson(e as Map<String, dynamic>))
+        .toList()
     ..deliveryDetails = json['delivery_details'] == null
         ? null
         : SurveyDeliveryDetails.fromJson(
@@ -55,13 +54,11 @@ SurveyItem _$SurveyItemFromJson(Map<String, dynamic> json) {
         ? null
         : TimeFrame.fromJson(
             json['effective_time_frame'] as Map<String, dynamic>)
-    ..descriptiveStatistic = json['descriptive_statistic'] as String
-    ..userNotes = json['user_notes'] as String
-    ..answers = (json['answers'] as List)
-        ?.map((e) => e == null
-            ? null
-            : AbstractSurveyAnswer.fromJson(e as Map<String, dynamic>))
-        ?.toList()
+    ..descriptiveStatistic = json['descriptive_statistic'] as String?
+    ..userNotes = json['user_notes'] as String?
+    ..answers = (json['answers'] as List<dynamic>?)
+        ?.map((e) => AbstractSurveyAnswer.fromJson(e as Map<String, dynamic>))
+        .toList()
     ..askedDateTime = json['asked_date_time'] == null
         ? null
         : DateTime.parse(json['asked_date_time'] as String)
@@ -92,15 +89,15 @@ Map<String, dynamic> _$SurveyItemToJson(SurveyItem instance) {
 
 SurveyQuestion _$SurveyQuestionFromJson(Map<String, dynamic> json) {
   return SurveyQuestion(
-    json['text'] as String,
-    label: json['label'] as String,
+    json['text'] as String?,
+    label: json['label'] as String?,
   )
     ..effectiveTimeFrame = json['effective_time_frame'] == null
         ? null
         : TimeFrame.fromJson(
             json['effective_time_frame'] as Map<String, dynamic>)
-    ..descriptiveStatistic = json['descriptive_statistic'] as String
-    ..userNotes = json['user_notes'] as String;
+    ..descriptiveStatistic = json['descriptive_statistic'] as String?
+    ..userNotes = json['user_notes'] as String?;
 }
 
 Map<String, dynamic> _$SurveyQuestionToJson(SurveyQuestion instance) {
@@ -126,8 +123,8 @@ AbstractSurveyAnswer _$AbstractSurveyAnswerFromJson(Map<String, dynamic> json) {
         ? null
         : TimeFrame.fromJson(
             json['effective_time_frame'] as Map<String, dynamic>)
-    ..descriptiveStatistic = json['descriptive_statistic'] as String
-    ..userNotes = json['user_notes'] as String;
+    ..descriptiveStatistic = json['descriptive_statistic'] as String?
+    ..userNotes = json['user_notes'] as String?;
 }
 
 Map<String, dynamic> _$AbstractSurveyAnswerToJson(
@@ -148,14 +145,14 @@ Map<String, dynamic> _$AbstractSurveyAnswerToJson(
 
 SurveyAnswer _$SurveyAnswerFromJson(Map<String, dynamic> json) {
   return SurveyAnswer(
-    json['value'] as String,
+    json['value'] as String?,
   )
     ..effectiveTimeFrame = json['effective_time_frame'] == null
         ? null
         : TimeFrame.fromJson(
             json['effective_time_frame'] as Map<String, dynamic>)
-    ..descriptiveStatistic = json['descriptive_statistic'] as String
-    ..userNotes = json['user_notes'] as String;
+    ..descriptiveStatistic = json['descriptive_statistic'] as String?
+    ..userNotes = json['user_notes'] as String?;
 }
 
 Map<String, dynamic> _$SurveyAnswerToJson(SurveyAnswer instance) {
@@ -177,7 +174,7 @@ Map<String, dynamic> _$SurveyAnswerToJson(SurveyAnswer instance) {
 SurveyCategoricalAnswer _$SurveyCategoricalAnswerFromJson(
     Map<String, dynamic> json) {
   return SurveyCategoricalAnswer(
-    value: (json['value'] as Map<String, dynamic>)?.map(
+    value: (json['value'] as Map<String, dynamic>?)?.map(
       (k, e) => MapEntry(k, e as String),
     ),
   )
@@ -185,8 +182,8 @@ SurveyCategoricalAnswer _$SurveyCategoricalAnswerFromJson(
         ? null
         : TimeFrame.fromJson(
             json['effective_time_frame'] as Map<String, dynamic>)
-    ..descriptiveStatistic = json['descriptive_statistic'] as String
-    ..userNotes = json['user_notes'] as String;
+    ..descriptiveStatistic = json['descriptive_statistic'] as String?
+    ..userNotes = json['user_notes'] as String?;
 }
 
 Map<String, dynamic> _$SurveyCategoricalAnswerToJson(
@@ -214,8 +211,8 @@ SurveyDateAnswer _$SurveyDateAnswerFromJson(Map<String, dynamic> json) {
         ? null
         : TimeFrame.fromJson(
             json['effective_time_frame'] as Map<String, dynamic>)
-    ..descriptiveStatistic = json['descriptive_statistic'] as String
-    ..userNotes = json['user_notes'] as String;
+    ..descriptiveStatistic = json['descriptive_statistic'] as String?
+    ..userNotes = json['user_notes'] as String?;
 }
 
 Map<String, dynamic> _$SurveyDateAnswerToJson(SurveyDateAnswer instance) {
@@ -236,14 +233,14 @@ Map<String, dynamic> _$SurveyDateAnswerToJson(SurveyDateAnswer instance) {
 
 SurveyTimeAnswer _$SurveyTimeAnswerFromJson(Map<String, dynamic> json) {
   return SurveyTimeAnswer(
-    json['value'] as String,
+    json['value'] as String?,
   )
     ..effectiveTimeFrame = json['effective_time_frame'] == null
         ? null
         : TimeFrame.fromJson(
             json['effective_time_frame'] as Map<String, dynamic>)
-    ..descriptiveStatistic = json['descriptive_statistic'] as String
-    ..userNotes = json['user_notes'] as String;
+    ..descriptiveStatistic = json['descriptive_statistic'] as String?
+    ..userNotes = json['user_notes'] as String?;
 }
 
 Map<String, dynamic> _$SurveyTimeAnswerToJson(SurveyTimeAnswer instance) {
@@ -273,8 +270,8 @@ SurveyUnitValueAnswer _$SurveyUnitValueAnswerFromJson(
         ? null
         : TimeFrame.fromJson(
             json['effective_time_frame'] as Map<String, dynamic>)
-    ..descriptiveStatistic = json['descriptive_statistic'] as String
-    ..userNotes = json['user_notes'] as String;
+    ..descriptiveStatistic = json['descriptive_statistic'] as String?
+    ..userNotes = json['user_notes'] as String?;
 }
 
 Map<String, dynamic> _$SurveyUnitValueAnswerToJson(
@@ -303,14 +300,14 @@ SurveyDeliveryDetails _$SurveyDeliveryDetailsFromJson(
     endDateTime: json['end_date_time'] == null
         ? null
         : DateTime.parse(json['end_date_time'] as String),
-    endStatus: json['end_status'] as String,
+    endStatus: json['end_status'] as String?,
   )
     ..effectiveTimeFrame = json['effective_time_frame'] == null
         ? null
         : TimeFrame.fromJson(
             json['effective_time_frame'] as Map<String, dynamic>)
-    ..descriptiveStatistic = json['descriptive_statistic'] as String
-    ..userNotes = json['user_notes'] as String;
+    ..descriptiveStatistic = json['descriptive_statistic'] as String?
+    ..userNotes = json['user_notes'] as String?;
 }
 
 Map<String, dynamic> _$SurveyDeliveryDetailsToJson(
@@ -334,15 +331,15 @@ Map<String, dynamic> _$SurveyDeliveryDetailsToJson(
 
 SurveyScore _$SurveyScoreFromJson(Map<String, dynamic> json) {
   return SurveyScore(
-    score: json['score'] as int,
-    value: json['value'] as String,
+    score: json['score'] as int?,
+    value: json['value'] as String?,
   )
     ..effectiveTimeFrame = json['effective_time_frame'] == null
         ? null
         : TimeFrame.fromJson(
             json['effective_time_frame'] as Map<String, dynamic>)
-    ..descriptiveStatistic = json['descriptive_statistic'] as String
-    ..userNotes = json['user_notes'] as String;
+    ..descriptiveStatistic = json['descriptive_statistic'] as String?
+    ..userNotes = json['user_notes'] as String?;
 }
 
 Map<String, dynamic> _$SurveyScoreToJson(SurveyScore instance) {

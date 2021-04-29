@@ -54,8 +54,8 @@ abstract class SchemaEnumValue {
 class SchemaId extends Object implements SchemaSupport, Comparable<SchemaId> {
   static final SchemaId SCHEMA_ID = SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, "schema-id", SchemaVersion(1, 0));
 
-  final String namespace;
-  final String name;
+  final String? namespace;
+  final String? name;
   final String version;
 
   @JsonKey(ignore: true)
@@ -69,12 +69,12 @@ class SchemaId extends Object implements SchemaSupport, Comparable<SchemaId> {
 
   @override
   int compareTo(SchemaId other) {
-    if (namespace.compareTo(other.namespace) != 0) {
-      return namespace.compareTo(other.namespace);
+    if (namespace!.compareTo(other.namespace!) != 0) {
+      return namespace!.compareTo(other.namespace!);
     }
 
-    if (name.compareTo(other.name) != 0) {
-      return name.compareTo(other.name);
+    if (name!.compareTo(other.name!) != 0) {
+      return name!.compareTo(other.name!);
     }
 
     return schemaVersion.compareTo(other.schemaVersion);
@@ -92,9 +92,9 @@ class SchemaVersion implements Comparable<SchemaVersion> {
   //static const String VERSION_PATTERN_STRING = "(\\d+)\\.(\\d+)(?:\\.(" + QUALIFIER_PATTERN_STRING + "))?";
   //final Pattern VERSION_PATTERN = Pattern.compile(VERSION_PATTERN_STRING);
 
-  int major = 1;
-  int minor = 0;
-  String qualifier;
+  int? major = 1;
+  int? minor = 0;
+  String? qualifier;
 
   SchemaVersion(this.major, this.minor, {this.qualifier}) {
     //TODO : should check if this is a valid version - see original OMH Java implementation.
@@ -125,17 +125,17 @@ class SchemaVersion implements Comparable<SchemaVersion> {
   /// Returns a negative integer if [this] is a older version than [other], a positive integer if [this] a newer version than [other]
   /// and zero if they are the same version.
   int compareTo(SchemaVersion other) {
-    if (major < other.major) {
+    if (major! < other.major!) {
       return -1;
     }
-    if (major > other.major) {
+    if (major! > other.major!) {
       return 1;
     }
 
-    if (minor < other.minor) {
+    if (minor! < other.minor!) {
       return -1;
     }
-    if (minor > other.minor) {
+    if (minor! > other.minor!) {
       return 1;
     }
 
@@ -148,7 +148,7 @@ class SchemaVersion implements Comparable<SchemaVersion> {
     if (qualifier == null) {
       return 0;
     }
-    return qualifier.compareTo(other.qualifier);
+    return qualifier!.compareTo(other.qualifier!);
   }
 
   String toString() => '$major.$minor${(qualifier != null) ? '.$qualifier' : ''}';
