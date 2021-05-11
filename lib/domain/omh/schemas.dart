@@ -52,7 +52,8 @@ abstract class SchemaEnumValue {
  */
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class SchemaId extends Object implements SchemaSupport, Comparable<SchemaId> {
-  static final SchemaId SCHEMA_ID = SchemaId.withVersion(SchemaSupport.OMH_NAMESPACE, "schema-id", SchemaVersion(1, 0));
+  static final SchemaId SCHEMA_ID = SchemaId.withVersion(
+      SchemaSupport.OMH_NAMESPACE, "schema-id", SchemaVersion(1, 0));
 
   final String? namespace;
   final String? name;
@@ -61,10 +62,13 @@ class SchemaId extends Object implements SchemaSupport, Comparable<SchemaId> {
   @JsonKey(ignore: true)
   final SchemaVersion schemaVersion;
 
-  SchemaId(this.namespace, this.name, this.version) : this.schemaVersion = new SchemaVersion.fromString(version);
-  SchemaId.withVersion(this.namespace, this.name, this.schemaVersion) : this.version = schemaVersion.toString();
+  SchemaId(this.namespace, this.name, this.version)
+      : this.schemaVersion = new SchemaVersion.fromString(version);
+  SchemaId.withVersion(this.namespace, this.name, this.schemaVersion)
+      : this.version = schemaVersion.toString();
 
-  factory SchemaId.fromJson(Map<String, dynamic> json) => _$SchemaIdFromJson(json);
+  factory SchemaId.fromJson(Map<String, dynamic> json) =>
+      _$SchemaIdFromJson(json);
   Map<String, dynamic> toJson() => _$SchemaIdToJson(this);
 
   @override
@@ -104,12 +108,13 @@ class SchemaVersion implements Comparable<SchemaVersion> {
 
   SchemaVersion.fromString(String version) {
     List<String> l = version.split('.');
-    this.major = int.parse(l[0] ?? '1');
-    this.minor = int.parse(l[1] ?? '0');
-    this.qualifier = l[2] ?? '';
+    this.major = l.length >= 1 ? int.parse(l[0]) : 0;
+    this.minor = l.length >= 2 ? int.parse(l[1]) : 0;
+    this.qualifier = l.length >= 3 ? l[2] : '';
   }
 
-  factory SchemaVersion.fromJson(Map<String, dynamic> json) => _$SchemaVersionFromJson(json);
+  factory SchemaVersion.fromJson(Map<String, dynamic> json) =>
+      _$SchemaVersionFromJson(json);
 
   Map<String, dynamic> toJson() => _$SchemaVersionToJson(this);
 
@@ -151,5 +156,6 @@ class SchemaVersion implements Comparable<SchemaVersion> {
     return qualifier!.compareTo(other.qualifier!);
   }
 
-  String toString() => '$major.$minor${(qualifier != null) ? '.$qualifier' : ''}';
+  String toString() =>
+      '$major.$minor${(qualifier != null) ? '.$qualifier' : ''}';
 }
